@@ -74,9 +74,7 @@
     "webpack": "^5.89.0"
   },
   "scripts": {
-    "prepare": "husky install",
     "build": "rimraf build && rollup --bundleConfigAsCjs --config rollup.config.js",
-    "lint-staged": "lint-staged",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

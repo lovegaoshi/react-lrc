@@ -1,28 +1,11 @@
 import { useMemo } from 'react';
-import { parse, LineType, type LyricLine as ClrcLyricLine } from 'clrc';
-import { type Line } from './constants';
-import getRandomString from '../../utils/get_random_string';
 
-function useLrc(lrc: string) {
-  const lines = useMemo<Line[]>(
-    () =>
-      (
-        parse(lrc).filter(
-          (line) => line.type === LineType.LYRIC,
-        ) as ClrcLyricLine[]
-      )
-        .map((l) => ({
-          id: getRandomString(),
-          lineNumber: l.lineNumber,
-          raw: l.raw,
-          startMillisecond: l.startMillisecond,
-          content: l.content,
-        }))
-        .sort((a, b) => a.startMillisecond - b.startMillisecond),
-    [lrc],
+import parser from '../../../react-native-lyric/src/util/parser/parser';
+
+export default (lrc: string, showUnformatted = true) => {
+  const lrcLineList = useMemo(
+    () => parser(lrc, showUnformatted),
+    [lrc, showUnformatted],
   );
-
-  return lines;
-}
-
-export default useLrc;
+  return lrcLineList;
+};

@@ -1,0 +1,3 @@
+[submodule "react-native-lyric"]
+	path = react-native-lyric
+	url = https://github.com/lovegaoshi/react-native-lyric.git
